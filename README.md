@@ -1,72 +1,197 @@
-# Student Management System (Console)
+# Student Management System
+> Java Project — Information Technology Department, Borg Al Arab Technological University  
+> Course: Java Programming | Semester 2 — 2025/2026  
+> Instructors: Dr. Radwa Rady & Dr. Ghada Fathy
 
-A simple command-line Student Management System written in Java. This project provides a menu-driven interface to manage students and their subjects, calculate weighted GPA, and perform basic operations such as adding/removing students and subjects.
+---
 
-## Features
+## Project Overview
 
-- Add and remove students (with unique ID checks).
-- Add and remove subjects for each student.
-- Calculate weighted GPA for a student (sum(grade * creditHours) / sum(creditHours)).
-- Display detailed student information including subjects and GPA.
-- Display all students in the system.
-- Find the student with the highest GPA.
-- Convert a numeric grade (0–100) to a letter grade (A/B/C/D/F).
-- Simple, robust input handling to avoid crashes on invalid input.
+A **menu-driven console application** built in Java that allows users to manage student records including personal information, subjects, grades, and GPA calculations.
 
-## Repository structure
+The system supports:
+- Managing student profiles
+- Assigning subjects with credit hours and grades
+- Calculating weighted GPA
+- Converting numeric grades to letter grades
+- Finding the top-performing student
 
-- `Main.java` - Program entry point and menu-driven interface.
-- `StudentManagementSystem.java` - Core system managing students and subjects.
-- `Student.java` - Student model with subject list and GPA calculation.
-- `Subject.java` - Subject model (name, credit hours, numeric grade).
-- `InputValidator.java` - Helper for safely reading integers, doubles, and strings from console.
+---
 
-## Requirements
+## Project Structure
 
-- Java Development Kit (JDK) 8 or newer installed and `javac`/`java` available in PATH.
+```
+StudentManagementSystem/
+│
+├── Subject.java                  # Represents a course/subject
+├── Student.java                  # Represents a student
+├── StudentManagementSystem.java  # Core system logic
+├── InputValidator.java           # Handles safe user input
+└── Main.java                     # Entry point + menu
+```
 
-## How to compile and run (PowerShell)
+---
 
-Open PowerShell in the project directory (where the `.java` files are) and run:
+## How to Run
 
-```powershell
-# Compile all Java source files
+### Requirements
+- Java JDK 8 or higher installed
+- Any terminal / command prompt
+
+### Steps
+
+**1. Compile all files:**
+```bash
 javac *.java
+```
 
-# Run the application
+**2. Run the program:**
+```bash
 java Main
 ```
 
-The program is interactive and will show a menu. Enter the number for the operation you want to perform and follow the prompts.
+---
 
-## Example (quick automated session)
+## Menu Options
 
-You can also pipe input for automated testing. Example (PowerShell style):
-
-```powershell
-"1`n1`nAhmed`nCS`n10`n10`n" | java Main
+```
+===== Student Management System =====
+1.  Add Student
+2.  Add Subject to Student
+3.  Display Student Information
+4.  Calculate Student GPA
+5.  Display All Students
+6.  Remove Student
+7.  Remove Subject
+8.  Show Student with Highest GPA
+9.  Convert Numeric Grade to Letter Grade
+10. Exit
+=====================================
 ```
 
-This example automates menu selections; use with care and adjust the inputs to match the expected prompts.
+---
 
-## Notes & Suggestions
+## GPA Calculation Formula
 
-- The application currently stores everything in memory; data will be lost when the program exits. If you want persistence, consider adding save/load functionality (JSON, CSV, or simple serialization).
-- Input handling is defensive thanks to `InputValidator`, but business rules (like disallowing negative IDs) can be tightened if needed.
-- Consider adding unit tests (JUnit) for core logic such as `calculateGPA`, `addStudent`, and `addSubjectToStudent`.
-- Minor UI cleanup: some print lines and formatting can be improved (for example replacing stray characters like `?` when printing results).
+GPA is calculated using a **weighted average** based on credit hours:
 
-## How to contribute
+```
+GPA = Σ(grade × creditHours) / Σ(creditHours)
+```
 
-If you want to extend this project, please edit the source files and open a pull request or add your changes locally. Keep public methods documented and add unit tests for new behavior when possible.
+### Example:
 
-## Contributors
+| Subject         | Credit Hours | Grade |
+|-----------------|:------------:|:-----:|
+| Java            | 3            | 90    |
+| Database        | 3            | 80    |
+| Data Structures | 4            | 95    |
 
-1. Ibraim Saeed — Role/Contribution: Main File
-2. Heda Ahmed — Role/Contribution: Subject File
-3. Mariam Sameh — Role/Contribution: Student Management File
-4. jana Rajab — Role/Contribution: Student Management File
-5. Habiba Hossam — Role/Contribution: Student Management File
-6. Ali Saad — Role/Contribution: Student File
-7. Ammar yasser — Role/Contribution: Student File
-8. Ahmed Saeed — Role/Contribution: Collected the project code, wrote and ran tests, and pushed the repository to GitHub.
+```
+GPA = (90×3 + 80×3 + 95×4) / (3+3+4)
+    = (270 + 240 + 380) / 10
+    = 890 / 10
+    = 89.0
+```
+
+---
+
+## Grade Conversion Table
+
+| Numeric Range | Letter Grade |
+|:-------------:|:------------:|
+| 90 – 100      | A            |
+| 80 – 89       | B            |
+| 70 – 79       | C            |
+| 60 – 69       | D            |
+| Below 60      | F            |
+
+---
+
+## Input Validation
+
+The program validates all user input to prevent crashes:
+
+| Validation Rule                        | Error Message                                      |
+|----------------------------------------|----------------------------------------------------|
+| Grade must be between 0 and 100        | `Error: Invalid grade. Please enter a value between 0 and 100.` |
+| Student name cannot be empty           | `Error: Student name cannot be empty.`             |
+| Student ID must be unique              | `Error: A student with ID X already exists.`       |
+| Student not found when searching       | `Error: Student with ID X not found.`              |
+| Invalid subject number when removing   | `Error: Invalid subject number.`                   |
+| Credit hours must be positive          | `Error: Credit hours must be a positive number.`   |
+| Non-numeric input for numbers          | `Error: Please enter a valid whole number.`        |
+
+---
+
+## Sample Interaction
+
+```
+===== Student Management System =====
+Enter your choice: 1
+
+--- Add New Student ---
+Enter Student ID: 101
+Enter Name: Ahmed Ali
+Enter Major: Computer Science
+Student added successfully!
+
+Enter your choice: 2
+
+--- Add Subject to Student ---
+Enter Student ID: 101
+Enter Subject Name: Java Programming
+Enter Credit Hours: 3
+Enter Grade: 92
+Subject added to student Ahmed Ali successfully.
+
+Enter your choice: 4
+
+--- Calculate Student GPA ---
+Enter Student ID: 101
+Student : Ahmed Ali
+GPA     : 92.00
+```
+
+---
+
+## Team Members & Responsibilities
+
+| # | Member | Responsibility |
+|---|--------|----------------|
+| 1 | Ibraim Saeed | `Main.java` — Menu loop, user interaction, switch cases for all 10 features |
+| 2 | Heda Ahmed | `Subject.java` — Full class (attributes, constructor, getters, setters, `getLetterGrade()`, `toString()`) |
+| 3 | Mariam Sameh | `StudentManagementSystem.java` — Features 1 & 2: `addStudent()` + `addSubjectToStudent()` |
+| 4 | Jana Rajab | `StudentManagementSystem.java` — Features 3, 4 & 5: `displayStudentInfo()` + `calculateStudentGPA()` + `displayAllStudents()` |
+| 5 | Habiba Hossam | `StudentManagementSystem.java` — Features 6, 7, 8 & 9: `removeStudent()` + `removeSubjectFromStudent()` + `showStudentWithHighestGPA()` + `convertToLetterGrade()` |
+| 6 | Ali Saad | `Student.java` — Attributes, constructor, getters & setters |
+| 7 | Ammar Yasser | `Student.java` — Methods: `addSubject()`, `removeSubject()`, `calculateGPA()`, `displayStudentInfo()` |
+| 8 | Ahmed Saeed | Collected & integrated all code, wrote & ran test cases, pushed repository to GitHub |
+
+---
+
+## Test Cases
+
+Before submission, make sure to test these scenarios:
+
+-  Add multiple students with different IDs
+-  Add several subjects to one student
+-  Calculate GPA correctly with different credit hours
+-  Try adding a student with a duplicate ID
+-  Search for a student ID that does not exist
+-  Enter a grade above 100 or below 0
+-  Enter an empty name
+-  Remove a subject using an invalid number
+-  Calculate GPA for a student with no subjects
+-  Find the student with the highest GPA among multiple students
+
+---
+
+## Notes
+
+- Each class is in its own separate `.java` file
+- Code includes proper indentation, meaningful variable names, and comments
+- The program does **not** crash on invalid input — all errors are handled gracefully
+- The menu keeps running until the user selects **option 10 (Exit)**
+
+---
