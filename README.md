@@ -166,7 +166,7 @@ GPA     : 92.00
 | 5 | Habiba Hossam | `StudentManagementSystem.java` — Features 6, 7, 8 & 9: `removeStudent()` + `removeSubjectFromStudent()` + `showStudentWithHighestGPA()` + `convertToLetterGrade()` |
 | 6 | Ali Saad | `Student.java` — Attributes, constructor, getters & setters |
 | 7 | Ammar Yasser | `Student.java` — Methods: `addSubject()`, `removeSubject()`, `calculateGPA()`, `displayStudentInfo()` |
-| 8 | Ahmed Saeed | Collected & integrated all code, wrote & ran test cases, pushed repository to GitHub |
+| 8 | Ahmed Saeed | `InputValidator.java` — Methods: `readInt(String prompt)`, `readDouble(String prompt)`, `readString(String prompt)` |
 
 ---
 
