@@ -155,18 +155,11 @@ GPA     : 92.00
 
 ---
 
-## Team Members & Responsibilities
+## Team Members 
 
-| # | Member | Responsibility |
-|---|--------|----------------|
-| 1 | Ibraim Saeed | `Main.java` — Menu loop, user interaction, switch cases for all 10 features |
-| 2 | Heda Ahmed | `Subject.java` — Full class (attributes, constructor, getters, setters, `getLetterGrade()`, `toString()`) |
-| 3 | Mariam Sameh | `StudentManagementSystem.java` — Features 1 & 2: `addStudent()` + `addSubjectToStudent()` |
-| 4 | Jana Rajab | `StudentManagementSystem.java` — Features 3, 4 & 5: `displayStudentInfo()` + `calculateStudentGPA()` + `displayAllStudents()` |
-| 5 | Habiba Hossam | `StudentManagementSystem.java` — Features 6, 7, 8 & 9: `removeStudent()` + `removeSubjectFromStudent()` + `showStudentWithHighestGPA()` + `convertToLetterGrade()` |
-| 6 | Ali Saad | `Student.java` — Attributes, constructor, getters & setters |
-| 7 | Ammar Yasser | `Student.java` — Methods: `addSubject()`, `removeSubject()`, `calculateGPA()`, `displayStudentInfo()` |
-| 8 | Ahmed Saeed | `InputValidator.java` — Methods: `readInt(String prompt)`, `readDouble(String prompt)`, `readString(String prompt)` |
+| # | Member |
+|---|--------
+| 1 | Ahmed Saeed |
 
 ---
 
